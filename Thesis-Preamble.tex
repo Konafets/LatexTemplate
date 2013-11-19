@@ -34,8 +34,7 @@
 %===============
 \usepackage{ngerman}                       % Umschalten auf die neue deutsche Rechtschreibung
 \usepackage{fontspec}                      % Wird von LuLaTeX benöigt und löst "fontenc" ab.
-\usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.
-\usepackage{blindtext}                
+\usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.            
 \usepackage[draft]{microtype}              % mikrotypographische Optimierungen
 \usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text. 
                                            % Dieses Package sollte als letztes aufgerufen werden, da es Problem mit Anderen geben könnte
@@ -49,6 +48,12 @@
 %====================
 % Paketeinstellungen
 %====================
+%********************
+% Spracheinstellungen
+%
+\setdefaultlanguage[spelling=new]{german}   % Die Sprache muß vor dem Einbinden von dem Blindtextpackage eingestellt werden
+\usepackage{blindtext}                      % Erstellt schnell und einfach Blindtexte mit \Blindtext. Wird ausnahmsweise hier eingebunden
+
 
 %-------------------
 % Linkkonfiguration
