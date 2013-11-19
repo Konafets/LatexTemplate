@@ -22,6 +22,8 @@
 \usepackage{fontspec}                      % Wird von LuLaTeX benöigt und löst "fontenc" ab.
 \usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.            
 \usepackage[draft]{microtype}              % mikrotypographische Optimierungen
+\usepackage{hologo}                        % Wird zum rendern des LaTeX und LuLaTeX "Logos" verwendet
+\usepackage{ifluatex}                      % Testen ob LuLaTeX installiert ist
 \usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text. 
                                            % Dieses Package sollte als letztes aufgerufen werden, da es Problem mit Anderen geben könnte
 \usepackage[
@@ -53,6 +55,38 @@
 \renewcommand*{\multfootsep}{,\nobreakspace}  % Fügt bei den hochgestellten Indexzahlen von Fußnoten ein Leerzeichen nach dem Komma ein
 \deffootnote{1em}{1em}{\thefootnotemark\ }    % Setzt die Indexzahlen in den Fußnoten etwas entfernt vom Text
 
+%------------------
+% Eigene Kommandos
+%------------------
+
+%------------------------------------------------
+% Die aktuell benutze Version von LaTex erkennen
+%------------------------------------------------
+\makeatletter
+
+\newcommand*{\InfoLaTeX}{%
+  \hologo{\fmtname}
+}
+
+%---------------------------------------------------
+% Die aktuell benutze Version von LuaLaTex erkennen
+%---------------------------------------------------
+\newcommand*{\InfoTeX}{%
+	\ifluatex
+		\hologo{LuaTeX}-%
+      	\begingroup
+			\count@=\luatexversion
+			\divide\count@ by 100 %
+			\edef\x{\the\count@}%
+			\count@=-\x\relax
+			\multiply\count@ by 100 %
+			\advance\count@ by \luatexversion
+			\x.\the\count@.\luatexrevision
+		\endgroup
+	\fi        
+}
+\makeatother
+
 %====================
 % Paketeinstellungen
 %====================
@@ -67,7 +101,8 @@
 %-------------------
 % Linkkonfiguration
 %-------------------
-\hypersetup{
+\hypersetup
+{
 	pdftitle={\Title},
 	pdfauthor={\Author},
 	pdfsubject={\Title},
