@@ -16,13 +16,52 @@
 	numbers=noendperiod       % Keinen Punkt der letzten Gliederungsebene in der Überschrift  -> 1.2.1 statt 1.2.1.
 ]{scrbook}
 
+%=================================================
+% Angaben zur Arbeit wie Titel und Name des Autor
+%=================================================
+\makeatletter
+    \title{Titel der Bachelorthesis}\let\Title\@title
+    \author{Kathrin Janeway}        \let\Author\@author
+    \date{\today}                   \let\Date\@date
+\makeatother
+\def\NameOfDepartment{Transportwesen}
+\def\AuthorEmail{<kathrin.janeway@starfleet.aca.edu>}
+\def\Major{Stellarkartographie}
+\def\MatricleNumber{123456}
+
+%===============
+% Pakete laden
+%===============
 \usepackage{ngerman}                       % Umschalten auf die neue deutsche Rechtschreibung
 \usepackage{fontspec}                      % Wird von LuLaTeX benöigt und löst "fontenc" ab.
 \usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.
-\usepackage{blindtext}
+\usepackage{blindtext}                
+\usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text. 
+                                           % Dieses Package sollte als letztes aufgerufen werden, da es Problem mit Anderen geben könnte
 
 %----------------
 % Renew commands
 %----------------
 \renewcommand*{\multfootsep}{,\nobreakspace}  % Fügt bei den hochgestellten Indexzahlen von Fußnoten ein Leerzeichen nach dem Komma ein
 \deffootnote{1em}{1em}{\thefootnotemark\ }    % Setzt die Indexzahlen in den Fußnoten etwas entfernt vom Text
+
+%====================
+% Paketeinstellungen
+%====================
+
+%-------------------
+% Linkkonfiguration
+%-------------------
+\hypersetup{
+	pdftitle={\Title},
+	pdfauthor={\Author},
+	pdfsubject={\Title},
+	pdfcreator={\Author},
+	pdfkeywords={typo3} {dbal} {doctrine} {mysql} {postgres},
+	linktoc=all,
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=black,
+	filecolor=black,
+	urlcolor=blue,
+}
