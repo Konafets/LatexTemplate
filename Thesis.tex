@@ -13,17 +13,27 @@
 % Hier fängt der eigentliche Inhalt an
 %--------------------------------------
 \begin{document}
-	\frontmatter
-	\blinddocument
+	%-------------
+	% Frontmatter
+	%-------------
+	\pagenumbering{roman}
+	\pagestyle{plain}
 	% Glossaries und Akronyme kommen hier hin oder ins Backmatter
-
-	\mainmatter
+	\blinddocument
+	
+	
+	%-------------
+	% Mainmatter
+	%-------------	
+	\pagenumbering{arabic}
 	\blinddocument
 
+	%-------------
+	% Backmatter
+	%-------------	
 	\appendix
 	\blinddocument
 
-	\backmatter
 	\blinddocument
 	% Glossaries und Akronyme kommen hier hin oder ins Frontmatter
 \end{document}
