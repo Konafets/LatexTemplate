@@ -10,10 +10,18 @@
 \documentclass[
 	fontsize=11pt,           % Die Schriftgröße
 	twoside=false,           % scrbook hat per Default ein Zwei-Seitenlayout
-	parskip=full             % Steuert die Absätze. http://www.rrzn.uni-hannover.de/fileadmin/kurse/material/latex/scrguide.pdf Tabelle 3.7
+	parskip=full,             % Steuert die Absätze. http://www.rrzn.uni-hannover.de/fileadmin/kurse/material/latex/scrguide.pdf Tabelle 3.7
+	headsepline,              % Fügt eine Trennungslinie in den Seitenkopf
+	footnotes=multiple
 ]{scrbook}
 
 \usepackage{ngerman}                       % Umschalten auf die neue deutsche Rechtschreibung
 \usepackage{fontspec}                      % Wird von LuLaTeX benöigt und löst "fontenc" ab.
 \usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.
 \usepackage{blindtext}
+
+%----------------
+% Renew commands
+%----------------
+\renewcommand*{\multfootsep}{,\nobreakspace}  % Fügt bei den hochgestellten Indexzahlen von Fußnoten ein Leerzeichen nach dem Komma ein
+\deffootnote{1em}{1em}{\thefootnotemark\ }    % Setzt die Indexzahlen in den Fußnoten etwas entfernt vom Text
