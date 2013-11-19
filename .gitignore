@@ -3,3 +3,11 @@
 .DS_Store
 *.toc
 *.out
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.xdy
+*.idx
