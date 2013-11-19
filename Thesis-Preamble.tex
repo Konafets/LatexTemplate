@@ -10,9 +10,8 @@
 \documentclass[
 	fontsize=11pt,           % Die Schriftgröße
 	twoside=false,           % scrbook hat per default ein Zweiseitenlayout
-	ngerman
 ]{scrbook}
 
-\usepackage{fontspec}                      % Wird von LuLaTeX benöigt und löst "fontenc" ab.
-\usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.
+\usepackage{fontspec}                      % Wird von LuaLaTeX für die Generierung von der Schriften benötigt
+\usepackage{polyglossia}                   % Ist ein vollständiger Ersatz für "babel" und baut auf "frontspec" auf
 \usepackage{blindtext}
