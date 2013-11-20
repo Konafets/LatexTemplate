@@ -23,6 +23,7 @@
 \usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.            
 \usepackage[draft]{microtype}              % mikrotypographische Optimierungen
 \usepackage{layout}                        % Zeigt die Berechnung der Seite graphisch an
+\usepackage{ifthen}                        % Erlaubt Kontrollstrukturen in LaTeX
 \usepackage{hologo}                        % Wird zum rendern des LaTeX und LuLaTeX "Logos" verwendet
 \usepackage{ifluatex}                      % Testen ob LuLaTeX installiert ist
 \usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text. 
@@ -39,15 +40,22 @@
 %=================================================
 % Angaben zur Arbeit wie Titel und Name des Autor
 %=================================================
-\makeatletter
-    \title{Titel der Bachelorthesis}\let\Title\@title
-    \author{Kathrin Janeway}        \let\Author\@author
-    \date{\today}                   \let\Date\@date
-\makeatother
-\def\NameOfDepartment{Transportwesen}
-\def\AuthorEmail{<kathrin.janeway@starfleet.aca.edu>}
-\def\Major{Stellarkartographie}
-\def\MatricleNumber{123456}
+\newcommand{\myTitle}{Titel der Bachelorthesis\xspace}
+\newcommand{\mySubtitle}{Put your subtitle here\xspace}
+\newcommand{\myDegree}{Put your degree here\xspace}
+\newcommand{\myName}{Kathrin Janeway\xspace}
+\newcommand{\myEMail}{<kathrin.janeway@starfleet.aca.edu>\xspace}
+\newcommand{\myMatricleNumber}{Put your number here\xspace}
+\newcommand{\myProf}{Prof. Vice Admiral Patterson\xspace}
+\newcommand{\myOtherProf}{Prof. H'ohk\xspace}
+\newcommand{\mySupervisor}{Put name here\xspace}
+\newcommand{\myUni}{\uppercase{\large Akademie der Sternenflotte}\xspace}
+\newcommand{\myDepartment}{Transportwesen\xspace}
+\newcommand{\myFaculty}{Put data here\xspace}
+\newcommand{\myMajor}{Stellarkartographie\xspace}
+\newcommand{\myLocation}{San Francisco\xspace}
+\newcommand{\myTime}{November 2013\xspace}
+\newcommand{\myVersion}{version 4.1\xspace}
 
 
 %----------------
@@ -104,10 +112,10 @@
 %-------------------
 \hypersetup
 {
-	pdftitle={\Title},
-	pdfauthor={\Author},
-	pdfsubject={\Title},
-	pdfcreator={\Author},
+	pdftitle={\myTitle},
+	pdfauthor={\myName},
+	pdfsubject={\myTitle},
+	pdfcreator={\myName},
 	pdfkeywords={typo3} {dbal} {doctrine} {mysql} {postgres},
 	linktoc=all,
 	colorlinks=true,
