@@ -12,3 +12,7 @@
 *.xdy
 *.idx
 *.gin
+*.bbl
+*.bcf
+*.blg
+*.run.xml
