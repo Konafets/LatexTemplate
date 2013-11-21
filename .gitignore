@@ -12,5 +12,7 @@
 *.xdy
 *.idx
 *.gin
-Biblatex.tex
-Thesis.bib
+*.bbl
+*.bcf
+*.blg
+*.run.xml
