@@ -20,7 +20,8 @@
 % Pakete laden
 %===============
 \usepackage{fontspec}                      % Wird von LuLaTeX benöigt und löst "fontenc" ab.
-\usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.            
+\usepackage{polyglossia}                   % Wird von LuLaTeX benöigt und löst "babel" ab.
+\usepackage[german=quotes]{csquotes}       % Anfühungszeichen global im Dokument steuern. Paket wird von "polyglossia" empfohlen.
 \usepackage[draft]{microtype}              % mikrotypographische Optimierungen
 %\usepackage{layout}                        % Zeigt die Berechnung der Seite graphisch an
 \usepackage{ifthen}                        % Erlaubt Kontrollstrukturen in LaTeX
@@ -32,13 +33,13 @@
 ]
 {biblatex}                                 % Nutze Biblatex zur Erstellung des Literaturverzeichnis
 \addbibresource{Bibliography.bib}          % Die Literatureinträge
-\usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text. 
+\usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text.
                                            % Dieses Package sollte als letztes aufgerufen werden, da es Problem mit Anderen geben könnte
 \usepackage[
     xindy={language=german,codepage=din5007-utf8}, % Ruft Xindy zum Erstellen des Index in der deutschen Version auf
     toc,                                   % Fügt die Glossare dem Inhaltsverzeichnis zu
     acronym,                               % Erstellt ein neues Glossar mit dem Label "acronym"
-    nonumberlist,                          % Fügt die Seitenzahlen hinzu, auf denen der Eintrag vorkommt 
+    nonumberlist,                          % Fügt die Seitenzahlen hinzu, auf denen der Eintrag vorkommt
     nopostdot                              % Entferne den Punkt am Ende der Definition
     ]{glossaries}                          % Erstellt Glossar und Abkürzungsverzeichnis. Laut der Dokumentation ist es ausdrücklich notwendig, dass es nach dem Package hyperref eingebunden werden muß
 \makeglossaries                            % Anweisung das Glossar zu erstellen
@@ -98,7 +99,7 @@
 			\advance\count@ by \luatexversion
 			\x.\the\count@.\luatexrevision
 		\endgroup
-	\fi        
+	\fi
 }
 \makeatother
 
@@ -137,18 +138,18 @@
 % http://tex.stackexchange.com/questions/8946/how-to-combine-acronym-and-glossary
 \newglossaryentry{dbal}
 {
-	type=\acronymtype, 
-	name={DBAL}, 
-	description={Database Abstraction Layer}, 
-	first={Database Abstraction Layer (DBAL)}, 
+	type=\acronymtype,
+	name={DBAL},
+	description={Database Abstraction Layer},
+	first={Database Abstraction Layer (DBAL)},
 	see=[Glossary:]{dbalg}
 }
 
 \newglossaryentry{bafög}
 {
-	type=\acronymtype, 
-	name={BAföG}, 
-	description={Bundesausbildungsförderungsgesetz}, 
+	type=\acronymtype,
+	name={BAföG},
+	description={Bundesausbildungsförderungsgesetz},
 	first={Bundesausbildungsförderungsgesetz (BAföG)}
 }
 
@@ -157,6 +158,6 @@
 %-------------
 \newglossaryentry{dbalg}
 {
-	name={DBAL}, 
+	name={DBAL},
 	description={A very long description of of what is DBAL}
 }
