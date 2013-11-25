@@ -29,7 +29,10 @@
 \usepackage{ifluatex}                      % Testen ob LuLaTeX installiert ist
 \usepackage[
 	backend=biber,                         % Benutzer biber zur Erstellung
-	bibwarn=true                           % Warne, wenn das BiTex Format falsch ist
+	bibwarn=true,                          % Warne, wenn das BiTex Format falsch ist
+	style=authoryear,
+	bibstyle=iso-authoryear,
+	%citestyle=
 ]
 {biblatex}                                 % Nutze Biblatex zur Erstellung des Literaturverzeichnis
 \addbibresource{Bibliography.bib}          % Die Literatureinträge
@@ -70,6 +73,26 @@
 %----------------
 \renewcommand*{\multfootsep}{,\nobreakspace}  % Fügt bei den hochgestellten Indexzahlen von Fußnoten ein Leerzeichen nach dem Komma ein
 \deffootnote{1em}{1em}{\thefootnotemark\ }    % Setzt die Indexzahlen in den Fußnoten etwas entfernt vom Text
+
+%---------------------------------------------------------------
+% Renew the citation style from parenthesis to square brackets:
+%---------------------------------------------------------------
+% (Popel 2007, S. 59–63) -> [Popel 2007, S. 59–63]
+% http://tex.stackexchange.com/questions/16765/biblatex-author-year-square-brackets
+%---------------------------------------------------------------
+\makeatletter
+\newrobustcmd*{\parentexttrack}[1]{%
+  \begingroup
+  \blx@blxinit
+  \blx@setsfcodes
+  \blx@bibopenparen#1\blx@bibcloseparen
+  \endgroup}
+
+\AtEveryCite{%
+  \let\parentext=\parentexttrack%
+  \let\bibopenparen=\bibopenbracket%
+  \let\bibcloseparen=\bibclosebracket}
+\makeatother
 
 %------------------
 % Eigene Kommandos
