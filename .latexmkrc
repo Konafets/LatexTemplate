@@ -1,5 +1,5 @@
 @default_files = ('Thesis.tex');
-$clean_ext = 'acn acr alg bbl glg glo gls xdy run.xml';
+$clean_ext = 'acn acr alg bbl glg glo gls xdy run.xml t.blg tex.blg';
 $bibtex = 'biber';
 $bibtexsrcs = 'Bibliography.bib';
 $pdflatex = 'lualatex %O %S';
