@@ -1,0 +1,48 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{thesis}[2013/11/22 v5.0 Typographic style for a classic-looking thesis]
+\RequirePackage{ifthen}
+\RequirePackage{verbatim}
+\newboolean{@drafting} % Activate/Deactivate drafting informations
+\newboolean{@eulerchapternumbers} % use AMS Euler for chapter font (otherwise Palatino)
+
+%---------
+% Options
+%---------
+%\DeclareOption{a5paper}{\setboolean{@a5paper}{true}}
+\DeclareOption{drafting}{\setboolean{@drafting}{true}}
+\DeclareOption{eulerchapternumbers}{\setboolean{@eulerchapternumbers}{true}}
+\ProcessOptions\relax
+
+%---------------
+% Drafting mode
+%---------------
+
+
+
+
+%------------
+% Font stuff
+%------------
+
+% mikrotypographische Optimierungen
+\ifthenelse{\boolean{@drafting}}
+{% Drafting mode enabled
+    \PackageInfo{thesis}{Setting document in "Draft" mode.}%
+    \PassOptionsToPackage{draft}{microtype}
+}
+{% Drafting mode disabled
+    \PackageInfo{thesis}{Setting document in "Final" mode.}%
+    \PassOptionsToPackage{final}{microtype}
+}
+\RequirePackage{microtype}
+
+
+% Euler eurb10 / Palatino OSF pplr9d / Palatino SC pplrc9d
+% Latin Modern cork-lmr10 / Minion MinionPro-Regular-osf-t1
+% (MinionPro-SemiboldCapt-osf-t1 MinionPro-SemiboldDisp-osf-t1)
+\ifthenelse{\boolean{@eulerchapternumbers}}% font for the chapter numbers
+{%
+    \newfont{\chapterNumber}{eurb10 scaled 7000}%
+}{%
+    \newfont{\chapterNumber}{pplr9d scaled 7000}
+}
