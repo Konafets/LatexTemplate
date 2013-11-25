@@ -6,6 +6,9 @@ SOURCES=$(MAINDOCUMENT).tex Makefile
 
 all: latexmake
 
+verbose:
+	$(LATEXMK) --verbose
+
 latexmake:
 	$(LATEXMK)
 
