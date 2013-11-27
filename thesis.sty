@@ -4,15 +4,18 @@
 \RequirePackage{verbatim}         % Provide the possibility for multi-line comments
 \newboolean{@drafting}            % Activate/Deactivate drafting informations
 \newboolean{@eulerchapternumbers} % use AMS Euler for chapter font (otherwise Palatino)
+\newboolean{@a5paper}             % use those tiny DIN A5 pages
+\newboolean{@minionpro}           % setup for minion pro font
 \newboolean{@layout}              % add a page to the document which shows the layout visually. Cant use in production mode
 \newboolean{@colophon}            % Loads the packages which are needed to create a nice colophon page
 
 %---------
 % Options
 %---------
-%\DeclareOption{a5paper}{\setboolean{@a5paper}{true}}
 \DeclareOption{drafting}{\setboolean{@drafting}{true}}
 \DeclareOption{eulerchapternumbers}{\setboolean{@eulerchapternumbers}{true}}
+\DeclareOption{a5paper}{\setboolean{@a5paper}{true}}
+\DeclareOption{minionpro}{\setboolean{@minionpro}{true}}
 \DeclareOption{layout}{\setboolean{@layout}{true}}
 \DeclareOption{colophon}{\setboolean{@colophon}{true}}
 \ProcessOptions\relax
@@ -98,4 +101,54 @@
     \newfont{\chapterNumber}{eurb10 scaled 7000}%
 }{%
     \newfont{\chapterNumber}{pplr9d scaled 7000}
+}%-----------------------
+% Size of the textblock
+%-----------------------
+\@ifpackageloaded{typearea}%
+{\relax}
+{%
+    \RequirePackage{typearea}%
 }
+\ifthenelse{\boolean{@a5paper}}%
+{% A5
+    \ifthenelse{\boolean{@minionpro}}%
+    {% Minion gets some extra sizes
+	    \PackageInfo{classicthesis}{A5 paper, MinionPro}%
+        \areaset[current]{278pt}{556pt}%
+	    \setlength{\marginparwidth}{5em}%
+    	\setlength{\marginparsep}{1.25em}%
+    }{% Palatino or other
+        \PackageInfo{classicthesis}{A5 paper, Palatino or other}%
+        \areaset[current]{288pt}{555pt}%
+        \setlength{\marginparwidth}{4em}%
+        \setlength{\marginparsep}{1.25em}%
+    }%
+}{% A4
+    \ifthenelse{\boolean{@minionpro}}%
+    {% Minion gets some extra sizes
+        \PackageInfo{classicthesis}{A4 paper, MinionPro}%
+        \areaset[current]{312pt}{684pt}% 609 + 33 + 42 head \the\footskip
+        \setlength{\marginparwidth}{7.5em}%
+        \setlength{\marginparsep}{2em}%
+    }
+    {% Palatino or other
+	    \PackageInfo{classicthesis}{A4 paper, Palatino or other}
+	    \areaset[current]{336pt}{750pt} % ~ 336 * factor 2 + 33 head + 42 \the\footskip
+%   	\areaset{336pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip 10pt
+		\setlength{\marginparwidth}{7em}%
+        \setlength{\marginparsep}{2em}%
+    }%
+}
+% Here are some suggestions for the text widths and heights:
+% Palatino 	10pt: 288--312pt | 609--657pt
+% Palatino 	11pt: 312--336pt | 657--705pt
+% Palatino 	12pt: 360--384pt | 768pt
+% Minion 	  10pt: 264--288pt | 561--609pt
+% Minion 	  11pt: 288--312pt | 609--657pt
+% Minion 	  12pt: 336pt      | 672pt
+% Libertine 10pt:
+% Libertine 11pt:
+% Libertine 12pt:
+% kpfonts 10pt:
+% kpfonts 11pt:
+% kpfonts 12pt:
