@@ -6,6 +6,8 @@
 \newboolean{@eulerchapternumbers} % use AMS Euler for chapter font (otherwise Palatino)
 \newboolean{@a5paper}             % use those tiny DIN A5 pages
 \newboolean{@minionpro}           % setup for minion pro font
+\newboolean{@eulermath}           % use awesome Euler fonts for math
+\newboolean{@beramono}            % toggle nice monospaced font (w/ bold) + pre-installed
 \newboolean{@layout}              % add a page to the document which shows the layout visually. Cant use in production mode
 \newboolean{@colophon}            % Loads the packages which are needed to create a nice colophon page
 
@@ -16,6 +18,8 @@
 \DeclareOption{eulerchapternumbers}{\setboolean{@eulerchapternumbers}{true}}
 \DeclareOption{a5paper}{\setboolean{@a5paper}{true}}
 \DeclareOption{minionpro}{\setboolean{@minionpro}{true}}
+\DeclareOption{eulermath}{\setboolean{@eulermath}{true}}
+\DeclareOption{beramono}{\setboolean{@beramono}{true}}
 \DeclareOption{layout}{\setboolean{@layout}{true}}
 \DeclareOption{colophon}{\setboolean{@colophon}{true}}
 \ProcessOptions\relax
@@ -92,6 +96,42 @@
 }
 \RequirePackage{microtype}
 
+% specialists: MinionPro
+\ifthenelse{\boolean{@minionpro}}%
+{%
+    % in order have Euler math fonts work with Minion, special option is needed
+    \ifthenelse{\boolean{@eulermath}}%
+    {%
+        \PassOptionsToPackage{opticals,mathlf,onlytext}{MinionPro}%
+        \RequirePackage{MinionPro} %  opticals, fullfamily, osf
+    }{%
+        \PassOptionsToPackage{opticals,mathlf}{MinionPro}%
+        \RequirePackage{MinionPro} %  opticals, fullfamily, osf
+    }
+}{%
+    % default: Palatino
+    \PassOptionsToPackage{osf,sc}{mathpazo}%
+    \RequirePackage{mathpazo} % Palatino with real small caps and old style figures
+    \linespread{1.05} % a bit more for Palatino
+}
+
+\ifthenelse{\boolean{@beramono}}%
+{%
+    \PassOptionsToPackage{scaled=0.85}{beramono}%
+    \RequirePackage{beramono}%
+}{%
+
+    \setmonofont[Scale=0.75]{Source Code Pro Light}
+    % put your own suitable typewriter font here
+    %\renewcommand{\ttdefault}{\rmdefault}
+}
+
+\ifthenelse{\boolean{@eulermath}}%
+{%
+    \PassOptionsToPackage{euler-digits}{eulervm}%
+    \RequirePackage{eulervm}% Euler math fonts
+}
+{\relax}%
 
 % Euler eurb10 / Palatino OSF pplr9d / Palatino SC pplrc9d
 % Latin Modern cork-lmr10 / Minion MinionPro-Regular-osf-t1
