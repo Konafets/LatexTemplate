@@ -5,6 +5,7 @@
 \newboolean{@drafting}            % Activate/Deactivate drafting informations
 \newboolean{@eulerchapternumbers} % use AMS Euler for chapter font (otherwise Palatino)
 \newboolean{@layout}              % add a page to the document which shows the layout visually. Cant use in production mode
+\newboolean{@colophon}            % Loads the packages which are needed to create a nice colophon page
 
 %---------
 % Options
@@ -13,6 +14,7 @@
 \DeclareOption{drafting}{\setboolean{@drafting}{true}}
 \DeclareOption{eulerchapternumbers}{\setboolean{@eulerchapternumbers}{true}}
 \DeclareOption{layout}{\setboolean{@layout}{true}}
+\DeclareOption{colophon}{\setboolean{@colophon}{true}}
 \ProcessOptions\relax
 
 %---------------
@@ -31,6 +33,39 @@
     }{\relax}%
 }
 
+%----------
+% Colophon
+%----------
+\ifthenelse{\boolean{@colophon}}
+{%
+    \RequirePackage{hologo}                        % Wird zum rendern des LaTeX und LuLaTeX "Logos" verwendet
+    \RequirePackage{ifluatex}                      % Testen ob LuLaTeX installiert ist
+
+    %------------------------------------------------
+    % Determine the current running version of LaTeX
+    %------------------------------------------------
+    \newcommand*{\InfoLaTeX}{%
+      \hologo{\fmtname}
+    }
+
+    %---------------------------------------------------
+    % Determine the current running version of LuaLaTeX
+    %---------------------------------------------------
+    \newcommand*{\InfoTeX}{%
+	    \ifluatex%
+		    \hologo{LuaTeX}-%
+      	    \begingroup
+			    \count@=\luatexversion
+			    \divide\count@ by 100 %
+			    \edef\x{\the\count@}%
+			    \count@=-\x\relax
+			    \multiply\count@ by 100 %
+			    \advance\count@ by \luatexversion
+			    \x.\the\count@.\luatexrevision
+		    \endgroup
+	    \fi%
+    }%
+}
 
 
 

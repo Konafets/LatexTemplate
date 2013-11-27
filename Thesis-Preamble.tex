@@ -20,6 +20,7 @@
     %eulerchapternumbers,
 	drafting
 	%layout,
+	colophon,
 %	dottedtoc,
 %	parts
 }{thesis}
@@ -105,33 +106,6 @@
 % Eigene Kommandos
 %------------------
 
-%------------------------------------------------
-% Die aktuell benutze Version von LaTex erkennen
-%------------------------------------------------
-\makeatletter
-
-\newcommand*{\InfoLaTeX}{%
-  \hologo{\fmtname}
-}
-
-%---------------------------------------------------
-% Die aktuell benutze Version von LuaLaTex erkennen
-%---------------------------------------------------
-\newcommand*{\InfoTeX}{%
-	\ifluatex
-		\hologo{LuaTeX}-%
-      	\begingroup
-			\count@=\luatexversion
-			\divide\count@ by 100 %
-			\edef\x{\the\count@}%
-			\count@=-\x\relax
-			\multiply\count@ by 100 %
-			\advance\count@ by \luatexversion
-			\x.\the\count@.\luatexrevision
-		\endgroup
-	\fi
-}
-\makeatother
 
 %---------------------
 % Spracheinstellungen
