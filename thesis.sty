@@ -141,7 +141,17 @@
     \newfont{\chapterNumber}{eurb10 scaled 7000}%
 }{%
     \newfont{\chapterNumber}{pplr9d scaled 7000}
-}%-----------------------
+}
+
+%-----------
+% Own Stuff
+%-----------
+% Disable single lines at the start of a paragraph (Schusterjungen)
+\clubpenalty = 10000
+
+% Disable single lines at the end of a paragraph (Hurenkinder)
+\widowpenalty = 10000
+\displaywidowpenalty = 10000 % formulas
 % Size of the textblock
 %-----------------------
 \@ifpackageloaded{typearea}%
