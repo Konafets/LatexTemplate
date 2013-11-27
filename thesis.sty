@@ -75,6 +75,15 @@
 }
 
 
+%-------------
+% Fancy Stuff
+%-------------
+\RequirePackage{textcase} % for \MakeTextUppercase
+
+\DeclareRobustCommand{\spacedallcaps}[1]{\textls[160]{\MakeTextUppercase{#1}}}%
+\DeclareRobustCommand{\spacedlowsmallcaps}[1]{\textls[80]{\scshape\MakeTextLowercase{#1}}}%
+
+
 %--------
 % Colors
 %--------
@@ -185,6 +194,50 @@
 }
 {\endenumerate}
 
+
+%--------------------------
+% Seitenkopf und Seitenfuß
+%--------------------------
+\PassOptionsToPackage{automark}{scrpage2}
+\@ifpackageloaded{scrpage2}%
+{\relax}
+{
+	\RequirePackage{scrpage2} % provides headers and footers (KOMA Script)
+}
+
+\clearscrheadfoot
+\setheadsepline{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
+\lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
+\rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
+\renewcommand{\headfont}{\small}
+\ifthenelse{\boolean{@drafting}}
+{%
+    \RequirePackage{gitinfo}     % Stellt Information von Git wie SHA, Version und Commitdatum zur Verfügung.
+    \setkomafont{pagefoot}{%
+		\footnotesize\ttfamily
+	}
+
+	% Set the version informations from git to \chapterpagestyle and \pagestyle
+	\cfoot[Version: \gitVtags\ Commit: \gitAbbrevHash\ from \gitAuthorIsoDate]{Version: \gitVtags\ Commit: \gitAbbrevHash\ from \gitAuthorIsoDate}
+
+    \ifthenelse{\boolean{@layout}}
+    {
+    	\RequirePackage{layout}
+    }{\relax}%
+}{%
+    \ifthenelse{\boolean{@layout}}
+    {
+    	\setboolean{@layout}{false}%
+    }{\relax}%
+}
+
+\def\toc@heading{%
+	\chapter*{\contentsname}%chapters
+	\@mkboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
+}
+\pagestyle{scrheadings}
 
 % Size of the textblock
 %-----------------------
