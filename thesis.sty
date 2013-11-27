@@ -8,6 +8,7 @@
 \newboolean{@minionpro}           % setup for minion pro font
 \newboolean{@eulermath}           % use awesome Euler fonts for math
 \newboolean{@beramono}            % toggle nice monospaced font (w/ bold) + pre-installed
+\newboolean{@linedheaders}        % chaper headers will have line above and beneath
 \newboolean{@layout}              % add a page to the document which shows the layout visually. Cant use in production mode
 \newboolean{@colophon}            % Loads the packages which are needed to create a nice colophon page
 
@@ -20,6 +21,7 @@
 \DeclareOption{minionpro}{\setboolean{@minionpro}{true}}
 \DeclareOption{eulermath}{\setboolean{@eulermath}{true}}
 \DeclareOption{beramono}{\setboolean{@beramono}{true}}
+\DeclareOption{linedheaders}{\setboolean{@linedheaders}{true}}
 \DeclareOption{layout}{\setboolean{@layout}{true}}
 \DeclareOption{colophon}{\setboolean{@colophon}{true}}
 \ProcessOptions\relax
@@ -88,6 +90,7 @@
 % Colors
 %--------
 \RequirePackage{xcolor}
+\definecolor{halfgray}{gray}{0.55} % chapter numbers will be semi transparent .5 .55 .6 .0
 
 %------------
 % Font stuff
@@ -239,6 +242,47 @@
 }
 \pagestyle{scrheadings}
 
+%----------------------------------------------------------------
+% Layout of the chapter-, section-, subsection-, subsubsection-,
+% paragraph and description-headings
+%----------------------------------------------------------------
+\RequirePackage{titlesec}
+
+% chapters
+\ifthenelse{\boolean{@linedheaders}}%
+{% lines above and below, number right
+    \titleformat{\chapter}[display]
+        {\relax}{\raggedleft{\color{halfgray}\chapterNumber\thechapter} \\ }{0pt}%
+        {\titlerule\vspace*{.9\baselineskip}\raggedright\spacedallcaps}[\normalsize\vspace*{.8\baselineskip}\titlerule]%
+}{% something like Bringhurst
+    \titleformat{\chapter}[display]
+        {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
+        {\raggedright\spacedallcaps}[\normalsize\vspace*{.8\baselineskip}\titlerule]%
+}
+
+% sections \FloatBarrier
+\titleformat{\section}{\relax}{\textsc{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
+
+% subsections
+\titleformat{\subsection}{\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize\itshape}
+
+% subsubsections
+\titleformat{\subsubsection}{\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\normalsize\itshape}
+
+% paragraphs
+\titleformat{\paragraph}[runin]{\normalfont\normalsize}{\theparagraph}{0pt}{\spacedlowsmallcaps}
+
+% descriptionlabels
+\renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}\spacedlowsmallcaps{#1}}   % spacedlowsmallcaps textit textsc
+
+% spacing
+\titlespacing*{\chapter}{0pt}{1\baselineskip}{1.2\baselineskip}%
+
+\titlespacing*{\section}{0pt}{1.25\baselineskip}{1\baselineskip}
+\titlespacing*{\subsection}{0pt}{1.25\baselineskip}{1\baselineskip}
+\titlespacing*{\paragraph}{0pt}{1\baselineskip}{1\baselineskip}
+
+%-----------------------
 % Size of the textblock
 %-----------------------
 \@ifpackageloaded{typearea}%
