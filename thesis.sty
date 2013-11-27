@@ -152,6 +152,40 @@
 % Disable single lines at the end of a paragraph (Hurenkinder)
 \widowpenalty = 10000
 \displaywidowpenalty = 10000 % formulas
+
+% Graffiti as in GKP's book "Concrete Mathematics"
+% thanks to Lorenzo Pantieri and Enrico Gregorio
+\def\graffito@setup{%
+   \slshape\footnotesize%
+   \parindent=0pt \lineskip=0pt \lineskiplimit=0pt %
+   \tolerance=2000 \hyphenpenalty=300 \exhyphenpenalty=300%
+   \doublehyphendemerits=100000%
+   \finalhyphendemerits=\doublehyphendemerits
+}
+
+%\DeclareRobustCommand{\graffito}[1]{%
+%    \marginpar[\graffito@setup\raggedleft\hspace{0pt}{#1}]%
+%    {\graffito@setup\raggedright\hspace{0pt}{#1}}%
+%}
+
+\let\oldmarginpar\marginpar
+\renewcommand{\marginpar}[1]{%
+    \oldmarginpar%
+    [\graffito@setup\raggedleft\hspace{0pt}{#1}]%
+    {\graffito@setup\raggedright\hspace{0pt}{#1}}%
+}
+
+% Enumeration environment with small caps
+\newenvironment{aenumerate}
+{%
+    \def\theenumi{%
+        \textsc{\alph{enumi}}%
+    }
+    \enumerate
+}
+{\endenumerate}
+
+
 % Size of the textblock
 %-----------------------
 \@ifpackageloaded{typearea}%
