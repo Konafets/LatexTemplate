@@ -2,8 +2,9 @@
 \ProvidesPackage{thesis}[2013/11/22 v5.0 Typographic style for a classic-looking thesis]
 \RequirePackage{ifthen}
 \RequirePackage{verbatim}
-\newboolean{@drafting} % Activate/Deactivate drafting informations
+\newboolean{@drafting}            % Activate/Deactivate drafting informations
 \newboolean{@eulerchapternumbers} % use AMS Euler for chapter font (otherwise Palatino)
+\newboolean{@layout}              % add a page to the document which shows the layout visually. Cant use in production mode
 
 %---------
 % Options
@@ -11,11 +12,24 @@
 %\DeclareOption{a5paper}{\setboolean{@a5paper}{true}}
 \DeclareOption{drafting}{\setboolean{@drafting}{true}}
 \DeclareOption{eulerchapternumbers}{\setboolean{@eulerchapternumbers}{true}}
+\DeclareOption{layout}{\setboolean{@layout}{true}}
 \ProcessOptions\relax
 
 %---------------
 % Drafting mode
 %---------------
+\ifthenelse{\boolean{@drafting}}
+{%
+    \ifthenelse{\boolean{@layout}}
+    {
+    	\RequirePackage{layout}
+    }{\relax}%
+}{%
+    \ifthenelse{\boolean{@layout}}
+    {
+    	\setboolean{@layout}{false}%
+    }{\relax}%
+}
 
 
 
