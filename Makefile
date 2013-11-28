@@ -16,7 +16,7 @@ clean:
 	$(LATEXMK) -c $(MAINDOCUMENT).tex
 
 lua:
-	lualatex $(MAINDOCUMENT).tex
+	lualatex  -shell-escape $(MAINDOCUMENT).tex
 
 glossaries:
 	makeglossaries $(MAINDOCUMENT)

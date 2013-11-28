@@ -2,7 +2,7 @@
 $clean_ext = 'acn acr alg bbl glg glo gls xdy run.xml t.blg tex.blg';
 $bibtex = 'biber';
 $bibtexsrcs = 'Bibliography.bib';
-$pdflatex = 'lualatex %O %S';
+$pdflatex = 'lualatex -shell-escape %O %S';
 $pdf_mode = 1;
 $postscript_mode = $dvi_mode = 0;
 

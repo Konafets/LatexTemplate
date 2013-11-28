@@ -43,6 +43,7 @@
 ]
 {biblatex}                                 % Nutze Biblatex zur Erstellung des Literaturverzeichnis
 \addbibresource{Bibliography.bib}          % Die Literatureinträge
+\usepackage{minted}                        % Sourcecode Highlighting. Dieses Package benötigt Python und Pygments 1.5. Version 1.6 macht Probleme mit gerade Anführungszeichen (') - es stellt sie als normale Anführungszeichen dar.
 \usepackage[punct-after=true]{fnpct}       % Ermöglicht das Setzen der Indexzahlen der Fußnoten hinter dem Punkt oder Komma. Hier ist es dafür gedacht die Option footnotes=multiple von KOMA wiederherzustellen, die durch das Hyperref Paket kaputt gegangen ist.
 \usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text.
                                            % Dieses Package sollte als letztes aufgerufen werden, da es Problem mit Anderen geben könnte
@@ -136,5 +137,27 @@
 % Grafiken
 %----------
 \graphicspath{ {gfx/} }
+
+%--------------
+% Code Listing
+%--------------
+%**************************************
+% Schrifteinstellungen für Codelistings
+%
+\setmonofont[Scale=0.75]{Source Code Pro Light}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\newminted{php}{
+	linenos              = true,
+	xleftmargin          = 2em,
+	tabsize              = 4,
+	bgcolor              = bg,
+	funcnamehighlighting = true
+}
+
+\newminted{mysql}{
+	linenos     = true,
+	bgcolor     = bg,
+	xleftmargin = 2em
+}
 
 \usepackage{thesis}
