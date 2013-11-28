@@ -5,6 +5,13 @@
 \RequirePackage{graphicx}         % Provide the possibility for multi-line comments
 \RequirePackage{caption}          % The caption package provides many ways to customise the captions in floating environments like figure and table
 \RequirePackage{subcaption}       % The package provides a means of using facilities analagous to those of the caption package, when writing captions for subfigures and the like
+\RequirePackage{tikz}             % Diagramme per Text beschreiben
+\RequirePackage{tikz-uml}         % UML Diagramme per Text beschreiben
+\RequirePackage{xstring}          % Abhängigkeit von tikz-uml
+\RequirePackage{calc}             % Abhängigkeit von tikz-uml
+\RequirePackage[draft]{microtype} % mikrotypographische Optimierungen. Moved
+\RequirePackage{pgfopts}          % This package is an add-on of the pgfkeys package for the management of packages and classes options.
+
 \newboolean{@drafting}            % Activate/Deactivate drafting informations
 \newboolean{@eulerchapternumbers} % use AMS Euler for chapter font (otherwise Palatino)
 \newboolean{@a5paper}             % use those tiny DIN A5 pages
