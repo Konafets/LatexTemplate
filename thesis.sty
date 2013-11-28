@@ -11,6 +11,7 @@
 \newboolean{@linedheaders}        % chaper headers will have line above and beneath
 \newboolean{@layout}              % add a page to the document which shows the layout visually. Cant use in production mode
 \newboolean{@colophon}            % Loads the packages which are needed to create a nice colophon page
+\newboolean{@bettertable}         % Loads tabluarx package
 
 %---------
 % Options
@@ -24,6 +25,7 @@
 \DeclareOption{linedheaders}{\setboolean{@linedheaders}{true}}
 \DeclareOption{layout}{\setboolean{@layout}{true}}
 \DeclareOption{colophon}{\setboolean{@colophon}{true}}
+\DeclareOption{bettertable}{\setboolean{@bettertable}{true}}
 \ProcessOptions\relax
 
 %---------------
@@ -154,6 +156,11 @@
 }{%
     \newfont{\chapterNumber}{pplr9d scaled 7000}
 }
+
+%--------
+% Tables
+%--------
+\RequirePackage{tabularx}
 
 %-----------
 % Own Stuff
