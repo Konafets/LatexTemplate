@@ -43,13 +43,14 @@
 ]
 {biblatex}                                 % Nutze Biblatex zur Erstellung des Literaturverzeichnis
 \addbibresource{Bibliography.bib}          % Die Literatureinträge
+\usepackage[punct-after=true]{fnpct}       % Ermöglicht das Setzen der Indexzahlen der Fußnoten hinter dem Punkt oder Komma. Hier ist es dafür gedacht die Option footnotes=multiple von KOMA wiederherzustellen, die durch das Hyperref Paket kaputt gegangen ist.
 \usepackage{hyperref}                      % Stellt Links in Schreibmaschinenschrift dar und legt einen Link über den Text.
                                            % Dieses Package sollte als letztes aufgerufen werden, da es Problem mit Anderen geben könnte
 \usepackage[
     xindy={language=german,codepage=din5007-utf8}, % Ruft Xindy zum Erstellen des Index in der deutschen Version auf
     toc,                                   % Fügt die Glossare dem Inhaltsverzeichnis zu
     acronym,                               % Erstellt ein neues Glossar mit dem Label "acronym"
-    nonumberlist,                          % Fügt die Seitenzahlen hinzu, auf denen der Eintrag vorkommt
+    nonumberlist,                          % Fügt die Seitenzahlen hinzu, auf denen der Eintrag vorkommt, nicht hinzu
     nopostdot                              % Entferne den Punkt am Ende der Definition
     ]{glossaries}                          % Erstellt Glossar und Abkürzungsverzeichnis. Laut der Dokumentation ist es ausdrücklich notwendig, dass es nach dem Package hyperref eingebunden werden muß
 \makeglossaries                            % Anweisung das Glossar zu erstellen
@@ -78,7 +79,7 @@
 %----------------
 % Renew commands
 %----------------
-\renewcommand*{\multfootsep}{,\nobreakspace}  % Fügt bei den hochgestellten Indexzahlen von Fußnoten ein Leerzeichen nach dem Komma ein
+%\renewcommand*{\multfootsep}{,\nobreakspace}  % Fügt bei den hochgestellten Indexzahlen von Fußnoten ein Leerzeichen nach dem Komma ein
 \deffootnote{1em}{1em}{\thefootnotemark\ }    % Setzt die Indexzahlen in den Fußnoten etwas entfernt vom Text
 
 %---------------------------------------------------------------
@@ -118,18 +119,17 @@
 %-------------------
 \hypersetup
 {
-	pdftitle={\myTitle},
-	pdfauthor={\myName},
-	pdfsubject={\myTitle},
-	pdfcreator={\myName},
-	pdfkeywords={typo3} {dbal} {doctrine} {mysql} {postgres},
-	linktoc=all,
-	colorlinks=true,
-	linkcolor=black,
-	citecolor=black,
-	filecolor=black,
-	urlcolor=blue,
+	pdftitle       = {\myTitle},
+	pdfauthor      = {\myName},
+	pdfsubject     = {\myTitle},
+	pdfcreator     = {\myName},
+	pdfkeywords    = {typo3} {dbal} {doctrine} {mysql} {postgres},
+	linktoc        = all,
+	colorlinks     = true,
+	linkcolor      = black,
+	citecolor      = black,
+	filecolor      = black,
+	urlcolor       = blue,
 }
-
 
 \usepackage{thesis}
