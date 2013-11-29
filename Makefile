@@ -14,6 +14,10 @@ latexmake:
 
 clean:
 	$(LATEXMK) -c $(MAINDOCUMENT).tex
+	rm -f *.aux
+	rm -f *.lol
+	rm -f Chapters/*.aux
+	rm -f FrontBackmatter/*.aux
 
 lua:
 	lualatex  -shell-escape $(MAINDOCUMENT).tex
