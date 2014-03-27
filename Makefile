@@ -18,6 +18,10 @@ clean:
 	rm -f *.lol
 	rm -f Chapters/*.aux
 	rm -f FrontBackmatter/*.aux
+	rm -f *.bak
+	rm -f Chapters/*.bak
+	rm -f Chapters/*.aux
+	rm -f FrontBackmatter/*.bak
 
 lua:
 	lualatex  -shell-escape $(MAINDOCUMENT).tex
